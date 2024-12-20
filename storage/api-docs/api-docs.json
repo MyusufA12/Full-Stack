@@ -1,0 +1,374 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Fusion Ceter Documentation",
+        "description": "Fusion Center Documentation",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://praktikum-1.test/api",
+            "description": "local server"
+        },
+        {
+            "url": "http://staging.example.com",
+            "description": "staging server"
+        },
+        {
+            "url": "http://example.com",
+            "description": "production server"
+        },
+        {
+            "url": "/api"
+        }
+    ],
+    "paths": {
+        "/students": {
+            "get": {
+                "tags": [
+                    "students"
+                ],
+                "summary": "Get all Students.",
+                "description": "Grt list of all students.",
+                "operationId": "39db22869d47b01080def30e73a495f3",
+                "responses": {
+                    "200": {
+                        "description": "students retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "students"
+                ],
+                "summary": "Menambahkan Data Mahasiswa.",
+                "description": "Menambahkan data Mahasiswa ke dalam database.",
+                "operationId": "05b606618d18edf791162666b068f139",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "nim",
+                                    "fakultas",
+                                    "email",
+                                    "phone",
+                                    "address",
+                                    "dob"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nama mahasiswa",
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "nim": {
+                                        "description": "Nomor Induk Mahasiswa",
+                                        "type": "string",
+                                        "example": "123456789"
+                                    },
+                                    "fakultas": {
+                                        "description": "Fakultas mahasiswa",
+                                        "type": "string",
+                                        "example": "Teknik"
+                                    },
+                                    "email": {
+                                        "description": "Email mahasiswa",
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john.doe@example.com"
+                                    },
+                                    "phone": {
+                                        "description": "Nomor telepon mahasiswa",
+                                        "type": "string",
+                                        "example": "081234567890"
+                                    },
+                                    "address": {
+                                        "description": "Alamat mahasiswa",
+                                        "type": "string",
+                                        "example": "Jl. Kebon Jeruk No. 1, Jakarta"
+                                    },
+                                    "dob": {
+                                        "description": "Tanggal lahir mahasiswa",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2000-01-01"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Mahasiswa berhasil ditambahkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Mahasiswa berhasil ditambahkan"
+                                        },
+                                        "data": {
+                                            "description": "Data mahasiswa yang baru ditambahkan",
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Data yang diberikan tidak valid"
+                    },
+                    "422": {
+                        "description": "Data gagal disimpan karena kesalahan validasi"
+                    }
+                }
+            }
+        },
+        "/students/{id}": {
+            "put": {
+                "tags": [
+                    "students"
+                ],
+                "summary": "Update an existing Student.",
+                "description": "Update the student details in the database by ID.",
+                "operationId": "d6e80c9d88e2e09a1014486b401f7059",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the student to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "nim",
+                                    "fakultas",
+                                    "email",
+                                    "phone",
+                                    "address",
+                                    "dob"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nama mahasiswa",
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "nim": {
+                                        "description": "Nomor Induk Mahasiswa",
+                                        "type": "string",
+                                        "example": "123456789"
+                                    },
+                                    "fakultas": {
+                                        "description": "Fakultas mahasiswa",
+                                        "type": "string",
+                                        "example": "Teknik"
+                                    },
+                                    "email": {
+                                        "description": "Email mahasiswa",
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john.doe@example.com"
+                                    },
+                                    "phone": {
+                                        "description": "Nomor telepon mahasiswa",
+                                        "type": "string",
+                                        "example": "081234567890"
+                                    },
+                                    "address": {
+                                        "description": "Alamat mahasiswa",
+                                        "type": "string",
+                                        "example": "Jl. Kebon Jeruk No. 1, Jakarta"
+                                    },
+                                    "dob": {
+                                        "description": "Tanggal lahir mahasiswa",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2000-01-01"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Student updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "description": "Updated student data",
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Student not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "students"
+                ],
+                "summary": "Delete a student by ID",
+                "description": "Delete a student from the database by ID.",
+                "operationId": "3f7aa1f71207373d0ff938da1ecff844",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the student to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Student deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Student deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Student not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Student not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid ID provided"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Student": {
+                "title": "students",
+                "description": "Model Mahasiswa",
+                "properties": {
+                    "id": {
+                        "description": "ID mahasiswa",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Nama mahasiswa",
+                        "type": "string"
+                    },
+                    "nim": {
+                        "description": "Nomor Induk Mahasiswa",
+                        "type": "string"
+                    },
+                    "fakultas": {
+                        "description": "Fakultas Mahasiswa",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Email mahasiswa",
+                        "type": "string"
+                    },
+                    "phone": {
+                        "description": "No HP mahasiswa",
+                        "type": "string"
+                    },
+                    "address": {
+                        "description": "Alamat Mahasiswa",
+                        "type": "string"
+                    },
+                    "dob": {
+                        "description": "Tanggal lahir Mahasiswa",
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "students",
+            "description": "students"
+        }
+    ]
+}
